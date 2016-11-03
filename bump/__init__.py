@@ -1,5 +1,7 @@
 from flask import Flask
 
+SERVER_BIND = ('0.0.0.0', 8000)
+
 
 # Flask configuration
 def _init_flask():
