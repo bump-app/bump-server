@@ -1,6 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
+#FIXME
+from flask_security import Security, SQLAlchemyUserDatastore, \
+        UserMixin, RoleMixin, login_required
+#from users.models import User, Role
+import users
 SERVER_BIND = ('0.0.0.0', 8000)
 
 
@@ -22,3 +26,4 @@ def _init_flask():
 
 APP = _init_flask()
 DB = SQLAlchemy(APP)
+user_datastore = SQL
