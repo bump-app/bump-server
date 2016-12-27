@@ -6,7 +6,7 @@ DEBUG = False
 SECRET_KEY = 'This string will be replaced with a proper key in production.'
 
 SQLALCHEMY_TRACK_MODIFICATIONS = False
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(_basedir, 'app.db')
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(_basedir, 'bump.db')
 DATABASE_CONNECT_OPTIONS = {}
 
 THREADS_PER_PAGE = 8
