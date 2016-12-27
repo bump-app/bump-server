@@ -1,13 +1,25 @@
-from bump import DB
+from bump import DB as db
 from bump.users import constants as USER
+from flask_security import UserMixin, RoleMixin
 
-class User(db.Model):
-    id = DB.Column(DB.Integer, primary_key=True)
-    name = DB.Column(DB.String(50), unique=True)
-    email = DB.Column(DB.String(120), unique=True)
-    password = DB.Column(DB.String(120))
-    role = db.Column(DB.SmallInteger, default=USER.USER)
-    status = db.Column(DB.SmallInteger, default=USER.NEW)
+roles_users = db.Table('roles_users',
+        db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+        db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
+
+class Role(db.Model, RoleMixin):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    description = db.Column(db.String(255))
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True)
+    email = db.Column(db.String(120), unique=True)
+    password = db.Column(db.String(120))
+    #role = db.Column(db.SmallInteger, default=USER.USER)
+    roles = db.relationship('Role', secondary=roles_users,
+                            backref=db.backref('users', lazy='dynamic')) 
+    status = db.Column(db.SmallInteger, default=USER.NEW)
 
     def __init__(self, name=None, email=None, password=None):
         self.name = name
@@ -22,3 +34,4 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % (self.name)
+

@@ -1,6 +1,7 @@
 from flask import render_template
+from flask_security import login_required
 
-
+#@login_required
 def index_view():
     """
     view function for the index page
@@ -17,7 +18,7 @@ def login():
     """
     view function for the login page
     """
-    pass
+    return render_template('security/login_user.html')
 
 def logout():
     """
@@ -31,7 +32,7 @@ VIEW_FUNCTIONS = (
     # url          function      options
     ('/',          index_view,   {}),
     ('/index/',    index_view,   {}),
-    ('/login/',    login,        {}),
+    #('/login/',    login,        {}),
     ('/logout/',   logout,       {}),
-    ('/register/', register,     {}),
+    #('/register/', register,     {}),
 )
