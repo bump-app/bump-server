@@ -1,13 +1,6 @@
-import os
-_basedir = os.path.abspath(os.path.dirname(__file__))
-
 DEBUG = False
 
 SECRET_KEY = 'This string will be replaced with a proper key in production.'
-
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(_basedir, 'bump.db')
-DATABASE_CONNECT_OPTIONS = {}
 
 THREADS_PER_PAGE = 8
 
