@@ -21,6 +21,6 @@
         {% for category, msg in get_flashed_messages(with_categories=True) %}
             <div class=flash>{{ message }}</div>
         {% endfor %}
-        {% block body %}{% endblock %}
+        {% block content %}{% endblock %}
     </div>
 </html>

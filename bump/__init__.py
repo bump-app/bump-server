@@ -31,3 +31,7 @@ def _init_flask():
 
 APP = _init_flask()
 DB = SQLAlchemy(APP)
+
+# import blueprints
+from bump.users.views import mod as usersModule
+APP.register_blueprint(usersModule)
