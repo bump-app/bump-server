@@ -20,7 +20,7 @@ def _init_flask():
 
     # add database settings
     app.config.update(dict(
-        SQLALCHEMY_DATABASE_URL = 'sqlite:///' + os.path.join(_basedir,
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(_basedir,
                                 'bump.db'),
         DATABASE_CONNECT_OPTIONS = {},
         # explicitly set to remove warning
@@ -35,3 +35,16 @@ DB = SQLAlchemy(APP)
 # import blueprints
 from bump.users.views import mod as usersModule
 APP.register_blueprint(usersModule)
+
+# create the db using flask's built in cli
+@APP.cli.command('initdb')
+def initdb_command():
+    """
+    Creates the database tables.
+    """
+    print('Initializing database...')
+    DB.create_all()
+    print('Initialized the database.')
+    print('Location: {path}'.format(
+        path=APP.config['SQLALCHEMY_DATABASE_URI']))
+

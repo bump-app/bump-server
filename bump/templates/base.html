@@ -13,13 +13,13 @@
         <h1>{% block header %}Bump{% endblock %}</h1>
         <div class=metanav>
         {% if not session.logged_in %}
-            <a href="{{ url_for('login') }}">log in</a>
+            <a href="{{ url_for('users.login') }}">log in</a>
         {% else %}
-            <a href="{{ url_for('logout') }}">log out</a>
+        <!--<a href="{{ url_for('logout') }}">log out</a>-->
         {% endif %}
         </div>
         {% for category, msg in get_flashed_messages(with_categories=True) %}
-            <div class=flash>{{ message }}</div>
+            <div class=flash>{{ msg }}</div>
         {% endfor %}
         {% block content %}{% endblock %}
     </div>

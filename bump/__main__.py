@@ -3,6 +3,7 @@ from bump.routes import VIEW_FUNCTIONS
 
 
 if __name__ == "__main__":
+    print("in __main__")
     for route, func, opts in VIEW_FUNCTIONS:
         APP.add_url_rule(
             rule=route, endpoint=func.__name__,
