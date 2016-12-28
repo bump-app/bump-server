@@ -1,3 +1,11 @@
+"""Initializes the flask app and database
+
+Loads condig from config.py
+
+Initializes APP, DB, and SERVER_BIND
+
+"""
+
 import os
 
 from flask import Flask
@@ -10,11 +18,12 @@ _BASEDIR = os.path.abspath(os.path.dirname(__file__))
 SERVER_BIND = ('0.0.0.0', 8000)
 
 
-# Flask configuration
 def _init_flask():
+    """Flask configuration"""
+
     app = Flask(__name__)
 
-    # base config
+    # base config from config.py
     app.config.from_object(config)
     # app.config.from_envvar('YOURAPPLICATION_SETTINGS')
 

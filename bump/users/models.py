@@ -1,8 +1,16 @@
+"""User models
+
+This module contains SQLAlchemy model classes for the Users package.
+
+"""
+
 from bump import DB as db
 from bump.users import constants as USER
 
 
 class User(db.Model):
+    """User model class for SQLAlchemy."""
+
     __tablename__ = 'users_user'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True)

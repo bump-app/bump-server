@@ -1,3 +1,9 @@
+"""User views
+
+This module contains user views exported using Blueprint.
+
+"""
+
 from flask import Blueprint, request, render_template, flash, g, session, \
     redirect, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -13,14 +19,18 @@ MOD = Blueprint('users', __name__, url_prefix='/users')
 @MOD.route('/me/')
 @requires_login
 def home():
+    """Profile view"""
     return render_template("users/profile.html", user=g.user)
 
 
 @MOD.before_request
 def before_request():
     """
-    pull user's profile from the database before every request are treated
+
+    Pull user's profile from the database before every request are treated.
+
     NOTE: should cache this later
+
     """
     g.user = None
     if 'user_id' in session:
@@ -29,9 +39,7 @@ def before_request():
 
 @MOD.route('/login/', methods=['GET', 'POST'])
 def login():
-    """
-    Login form
-    """
+    """Login view"""
     form = LoginForm(request.form)
 
     # make sure data are valid but doesn't validate password
@@ -50,9 +58,7 @@ def login():
 
 @MOD.route('/register/', methods=['GET', 'POST'])
 def register():
-    """
-    Registration Form
-    """
+    """Registration view"""
     form = RegisterForm(request.form)
     if form.validate_on_submit():
         # create an user instance not yet stored in the database

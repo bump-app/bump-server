@@ -1,3 +1,9 @@
+"""User decorators
+
+This module contains decorators used by Users package.
+
+"""
+
 from functools import wraps
 
 from flask import g, flash, redirect, url_for, request

@@ -1,6 +1,13 @@
-from bump.users.views import MOD as usersModule
-from bump import APP, DB
+"""Performs setup on the app
 
+Loads Blueprints in to flask app and initialize the database using the cli
+built in.
+
+"""
+
+from bump import APP, DB
+# loads in the Blueprint
+from bump.users.views import MOD as usersModule
 
 APP.register_blueprint(usersModule)
 

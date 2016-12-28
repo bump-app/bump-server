@@ -1,4 +1,9 @@
-# https://github.com/pallets/flask/wiki/Large-app-how-to
+"""User constants
+
+This module contains contants used by Users package.
+
+"""
+
 # User role
 ADMIN = 0
 USER = 1

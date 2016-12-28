@@ -1,3 +1,9 @@
+"""Config file for bump
+
+Does not configure database
+
+"""
+
 DEBUG = False
 
 SECRET_KEY = 'This string will be replaced with a proper key in production.'
