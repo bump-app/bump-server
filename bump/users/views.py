@@ -21,6 +21,7 @@ MOD = Blueprint('users', __name__)
 @requires_login
 def home():
     """Profile view"""
+
     return render_template("users/profile.html", user=g.user)
 
 
@@ -41,7 +42,9 @@ def before_request():
 @MOD.route('/register/', methods=['GET', 'POST'])
 def register():
     """Registration view"""
+
     form = RegisterForm(request.form)
+
     if form.validate_on_submit():
         # create an user instance not yet stored in the database
         user = User(name=form.name.data, email=form.email.data,
@@ -63,6 +66,7 @@ def register():
 @MOD.route('/login/', methods=['GET', 'POST'])
 def login():
     """Login view"""
+
     form = LoginForm(request.form)
 
     # make sure data are valid but doesn't validate password
