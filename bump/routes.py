@@ -1,12 +1,13 @@
 from flask import render_template
 from flask_login import login_required
 
-#@login_required
+
 def index_view():
     """
     view function for the index page
     """
     return render_template('index.html')
+
 
 def register():
     """
@@ -14,11 +15,13 @@ def register():
     """
     pass
 
+
 def login():
     """
     view function for the login page
     """
     pass
+
 
 def logout():
     """

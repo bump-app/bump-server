@@ -9,10 +9,12 @@ from bump.users.decorators import requires_login
 
 mod = Blueprint('users', __name__, url_prefix='/users')
 
+
 @mod.route('/me/')
 @requires_login
 def home():
     return render_template("users/profile.html", user=g.user)
+
 
 @mod.before_request
 def before_request():
@@ -23,6 +25,7 @@ def before_request():
     g.user = None
     if 'user_id' in session:
         g.user = User.query.get(session['user_id'])
+
 
 @mod.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -44,6 +47,7 @@ def login():
         flash("Wrong email or password", 'error-message')
     return render_template("users/login.html", form=form)
 
+
 @mod.route('/register/', methods=['GET', 'POST'])
 def register():
     """
@@ -52,8 +56,8 @@ def register():
     form = RegisterForm(request.form)
     if form.validate_on_submit():
         # create an user instance not yet stored in the database
-        user = User(name=form.name.data, email=form.email.data, 
-                password=generate_password_hash(form.password.data))
+        user = User(name=form.name.data, email=form.email.data,
+                    password=generate_password_hash(form.password.data))
         # insert the record in database and commit it
         db.session.add(user)
         db.session.commit()

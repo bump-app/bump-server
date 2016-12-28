@@ -4,7 +4,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 import bump.config
-        
+
 _basedir = os.path.abspath(os.path.dirname(__file__))
 
 SERVER_BIND = ('0.0.0.0', 8000)
@@ -16,15 +16,15 @@ def _init_flask():
 
     # base config
     app.config.from_object(config)
-    #app.config.from_envvar('YOURAPPLICATION_SETTINGS')
+    # app.config.from_envvar('YOURAPPLICATION_SETTINGS')
 
     # add database settings
     app.config.update(dict(
-        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(_basedir,
-                                'bump.db'),
-        DATABASE_CONNECT_OPTIONS = {},
+        SQLALCHEMY_DATABASE_URI='sqlite:///' + os.path.join(_basedir,
+                                                            'bump.db'),
+        DATABASE_CONNECT_OPTIONS={},
         # explicitly set to remove warning
-        SQLALCHEMY_TRACK_MODIFICATIONS = False,
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
         ))
     return app
 
@@ -32,9 +32,12 @@ def _init_flask():
 APP = _init_flask()
 DB = SQLAlchemy(APP)
 
+# FIXME: Don't know how to structure these circular imports
+# They need to occur after APP has been defined since they need DB
 # import blueprints
 from bump.users.views import mod as usersModule
 APP.register_blueprint(usersModule)
+
 
 # create the db using flask's built in cli
 @APP.cli.command('initdb')
@@ -47,4 +50,3 @@ def initdb_command():
     print('Initialized the database.')
     print('Location: {path}'.format(
         path=APP.config['SQLALCHEMY_DATABASE_URI']))
-
