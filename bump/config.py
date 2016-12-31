@@ -4,7 +4,9 @@ Does not configure database
 
 """
 
-DEBUG = False
+DEBUG = True
+# Debug ONLY
+SEND_FILE_MAX_AGE_DEFAULT = 0
 
 SECRET_KEY = 'This string will be replaced with a proper key in production.'
 

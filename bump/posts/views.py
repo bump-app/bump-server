@@ -37,6 +37,7 @@ def before_request():
     if 'user_id' in session:
         g.user = User.query.get(session['user_id'])
 
+
 #@MOD.route('/<username>/new_post/', methods=['GET', 'POST'])
 @MOD.route('/new_post/', methods=['GET', 'POST'])
 @requires_login
