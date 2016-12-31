@@ -8,8 +8,10 @@ built in.
 from bump import APP, DB
 # loads in the Blueprint
 from bump.users.views import MOD as usersModule
+from bump.posts.views import MOD as postsModule
 
 APP.register_blueprint(usersModule)
+APP.register_blueprint(postsModule)
 
 
 # create the db using flask's built in cli

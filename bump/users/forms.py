@@ -1,6 +1,6 @@
 """User forms
 
-This module contains WTForms used by views.
+This module contains WTForms used by user views.
 
 """
 

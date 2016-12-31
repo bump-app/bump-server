@@ -1,6 +1,6 @@
 """User constants
 
-This module contains contants used by Users package.
+This module contains contants used by users package.
 
 """
 

@@ -36,7 +36,11 @@ def before_request():
     """
     g.user = None
     if 'user_id' in session:
+        print("in session")
         g.user = User.query.get(session['user_id'])
+    else:
+        print("not in session")
+
 
 
 @MOD.route('/register/', methods=['GET', 'POST'])
@@ -49,7 +53,7 @@ def register():
         # create an user instance not yet stored in the database
         user = User(name=form.name.data, email=form.email.data,
                     password=generate_password_hash(form.password.data))
-        # insert the record in database and commit it
+        # insert the user in database and commit it
         db.session.add(user)
         db.session.commit()
 
