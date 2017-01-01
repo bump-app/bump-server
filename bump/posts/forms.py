@@ -15,6 +15,7 @@ class NewPostForm(FlaskForm):
     title = TextField('Title', [Required()])
     text = TextField('Text')
 
+
 class NewCommentForm(FlaskForm):
     """New comment form"""
 

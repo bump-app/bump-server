@@ -65,25 +65,25 @@ def new_post():
         return redirect(url_for('posts.all_posts'))
     return render_template("posts/new_post.html", form=form)
 
+
 @MOD.route('/comments/<post_id>/', methods=['GET', 'POST'])
 def all_comments(post_id):
     """Comments view"""
 
-    post = Post.query.filter_by(id=post_id).first()
-
-    comments = post.comments.all()
-
     form = NewCommentForm(request.form)
+
+    post = Post.query.filter_by(id=post_id).first()
 
     # make sure data are valid
     if form.validate_on_submit():
-        comment = Comment(text=form.text.data, post_id=post_id, 
-                          user_id=post.user)
+        comment = Comment(text=form.text.data, post_id=post_id,
+                          user_id=post.user.id)
 
         db.session.add(comment)
         db.session.commit()
 
         flash("Comment posted!")
 
+    comments = post.comments.all()
     return render_template("posts/all_comments.html", post=post,
-                            comments=comments, form=form)
+                           comments=comments, form=form)
