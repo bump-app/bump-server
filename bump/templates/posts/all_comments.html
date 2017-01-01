@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if session.user_id %}
+        {% from "forms/macros.html" import render_field %}
+        New comment:
+        <form method="POST" action="." class = "form">
+            {{ form.csrf_token }}
+            {{ render_field(form.text, class="input text") }}
+            <input type="submit" value="Comment" class="button green">
+        </form>
+    <hr>
+    {% endif %}
+    <div class=post>
+        Title: {{ post.title }} | By: {{ post.user.name }}
+        <hr>
+        Text: {{ post.text }}
+    </div>
+    <hr>
+    {% if not comments %}
+        <div class=flash>No comments!</div>
+    {% else %}
+        {% for comment in comments %}
+            <div class=post>
+                {{ comment.text }}
+                <hr>
+                By: {{ comment.user.name }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+

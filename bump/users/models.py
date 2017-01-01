@@ -7,8 +7,6 @@ This module contains SQLAlchemy model classes for the users package.
 from bump import DB as db
 from bump.users import constants as USER
 
-# FIXME
-#from bump.posts.models import Post 
 
 class User(db.Model):
     """User model class for SQLAlchemy."""
@@ -21,6 +19,7 @@ class User(db.Model):
     role = db.Column(db.SmallInteger, default=USER.USER)
     status = db.Column(db.SmallInteger, default=USER.NEW)
     posts = db.relationship('Post', backref='user', lazy='dynamic')
+    comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
     def __init__(self, name=None, email=None, password=None):
         self.name = name

@@ -8,6 +8,10 @@
                 Title: {{ post.title }} | By: {{ post.user.name }}
                 <hr>
                 Text: {{ post.text }}
+                <div>
+                    <a href="{{ url_for('posts.all_comments', 
+                                         post_id=post.id) }}">comments</a>
+                </div>
             </div>
         {% endfor %}
     {% endif %}

@@ -36,11 +36,7 @@ def before_request():
     """
     g.user = None
     if 'user_id' in session:
-        print("in session")
         g.user = User.query.get(session['user_id'])
-    else:
-        print("not in session")
-
 
 
 @MOD.route('/register/', methods=['GET', 'POST'])
