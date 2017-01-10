@@ -19,7 +19,10 @@ class Post(db.Model):
     time_posted = db.Column(db.DateTime)
     comment_count = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users_user.id'))
-    comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    comments = db.relationship('Comment',
+                               backref='post',
+                               cascade='all',
+                               lazy='dynamic')
 
     def __init__(self, title=None, text=None, user_id=None):
         self.title = title

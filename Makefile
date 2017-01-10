@@ -1,5 +1,6 @@
 PYTHON = python3
 APPDIR = bump
+TESTDIR = tests
 
 check:
 	$(PYTHON) -m pep8 $(APPDIR)
@@ -13,3 +14,6 @@ init:
 
 run:
 	$(PYTHON) run.py 
+
+test:
+	$(PYTHON) -m $(APPDIR)/$(TESTDIR)

@@ -16,7 +16,6 @@ from bump.users.decorators import requires_login
 MOD = Blueprint('users', __name__)
 
 
-@MOD.route('/')
 @MOD.route('/me/')
 @requires_login
 def home():
@@ -72,12 +71,14 @@ def login():
     # make sure data are valid but doesn't validate password
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
+
         # use werkzeug to validate user's password
         if user and check_password_hash(user.password, form.password.data):
             # the session can't be modified as it's signed,
             # it's a safe place to store the user id
             session['user_id'] = user.id
             flash("Welcome {username}!".format(username=user.name))
+
             return redirect(url_for('users.home'))
         flash("Wrong email or password", 'error-message')
     return render_template("users/login.html", form=form)
