@@ -56,7 +56,7 @@ def register():
         session['user_id'] = user.id
 
         # flash a message to the user
-        flash("Thanks for registering")
+        flash("Thanks for registering!")
         # redirect user to the 'home' method of the user module
         return redirect(url_for('users.home'))
     return render_template("users/register.html", form=form)
