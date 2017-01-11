@@ -1,6 +1,7 @@
 PYTHON = python3
 APPDIR = bump
-TESTDIR = tests
+TESTDIR = test
+TESTCASE = test_bump
 
 check:
 	$(PYTHON) -m pep8 $(APPDIR)
@@ -15,5 +16,6 @@ init:
 run:
 	$(PYTHON) run.py 
 
+.PHONY: all test clean
 test:
-	$(PYTHON) -m $(APPDIR)/$(TESTDIR)
+	$(PYTHON) -m unittest $(TESTDIR).$(TESTCASE)
