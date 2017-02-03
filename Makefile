@@ -1,5 +1,6 @@
 PYTHON = python3
 APPDIR = bump
+DB_NAME = bump.db
 TESTDIR = test
 TESTCASE = test_bump
 
@@ -19,3 +20,8 @@ run:
 .PHONY: all test clean
 test:
 	$(PYTHON) -m unittest $(TESTDIR).$(TESTCASE)
+
+reset-db:
+	rm -i $(APPDIR)/$(DB_NAME)
+	FLASK_APP=$(APPDIR)/setup.py flask initdb
+
