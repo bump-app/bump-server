@@ -6,7 +6,7 @@ from flask import url_for
 
 #import bump
 from bump import APP, DB
-from bump import setup
+#from bump import setup
 from test.url import *
 
 class BumpTestCase(unittest.TestCase):

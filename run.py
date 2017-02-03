@@ -10,7 +10,7 @@ from bump import APP, DB, SERVER_BIND
 # bump/setup.py could be appended to bump/__init__,py but would cause cicular
 # import and require import statements to be in the middle of the file
 
-from bump import setup
+#from bump import setup
 
 
 APP.run(host=SERVER_BIND[0],
