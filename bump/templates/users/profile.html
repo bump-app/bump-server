@@ -1,4 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-    Hi {{ user.name }}!
+    Hi {{ user.name }}!  <br/>
+    <br/>
+    Email: {{ user.email }} <br/>
+    Role: {{ user.get_role() }} <br/>
 {% endblock %}

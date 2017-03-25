@@ -21,7 +21,7 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     """ Registration form"""
 
-    name = StringField('NickName', [Required()])
+    name = StringField('Name', [Required()])
     email = StringField('Email address', [Required(), Email()])
     password = PasswordField('Password', [Required()])
     confirm = PasswordField('Repeat Password', [

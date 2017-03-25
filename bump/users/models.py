@@ -16,7 +16,7 @@ class User(db.Model):
     name = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
-    role = db.Column(db.SmallInteger, default=USER.USER)
+    _role = db.Column(db.SmallInteger, default=USER.USER)
     status = db.Column(db.SmallInteger, default=USER.NEW)
     posts = db.relationship('Post', backref='user', lazy='dynamic')
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
@@ -30,7 +30,7 @@ class User(db.Model):
         return USER.STATUS[self.status]
 
     def get_role(self):
-        return USER.ROLE[self.role]
+        return USER.ROLE[self._role]
 
     def __repr__(self):
         return '<User {name}>'.format(name=self.name)

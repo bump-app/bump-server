@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    register
+    Register
     {% from "forms/macros.html" import render_field %}
     <form method="POST" action="." class = "form">
         {{ form.csrf_token }}
