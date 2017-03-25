@@ -1,6 +1,6 @@
 """User decorators
 
-This module contains decorators used by Users package.
+This module contains decorators used by users package.
 
 """
 

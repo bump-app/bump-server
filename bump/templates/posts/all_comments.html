@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class=post>
+        Title: {{ post.title }} | By: {{ post.user.name }}
+        <hr>
+        Text: {{ post.text }}
+        {% if g.user == post.user %}
+        <div class=postnav>
+            <a href="{{ url_for('posts.delete_post',
+                post_id=post.id) }}">delete</a> 
+        </div>
+        {% endif %}
+    </div>
+    <hr>
+    {% if session.user_id %}
+        {% from "forms/macros.html" import render_field %}
+        <div>New comment:</div>
+        <form method="POST" action="." class = "form">
+            {{ form.csrf_token }}
+            {{ render_field(form.text, class="input text") }}
+            <input type="submit" value="Comment" class="button green">
+        </form>
+    <hr>
+    {% endif %}
+    <div>Comments:</div>
+    {% if not comments %}
+        <div class=flash>No comments!</div>
+    {% else %}
+        {% for comment in comments %}
+            <div class=post>
+                {{ comment.text }}
+                <hr>
+                By: {{ comment.user.name }}
+                {% if g.user == comment.user %}
+                    <div class=postnav>
+                        <a href="{{ url_for('posts.delete_comment',
+                            post_id=post.id, comment_id=comment.id)
+                            }}">delete</a> 
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+

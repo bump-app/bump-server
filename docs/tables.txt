@@ -1,0 +1,10 @@
+Users -> friends
+
+posts
+comments
+
+subreddits/categories
+
+
+
+
