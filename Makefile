@@ -12,7 +12,7 @@ lint: check
 	$(PYTHON) -m pylint $(APPDIR)
 
 init:
-	FLASK_APP=$(APPDIR)/setup.py flask initdb
+	FLASK_APP=$(APPDIR)/__init__.py flask initdb
 
 run:
 	$(PYTHON) run.py 
@@ -23,5 +23,5 @@ test:
 
 reset-db:
 	rm -i $(APPDIR)/$(DB_NAME)
-	FLASK_APP=$(APPDIR)/setup.py flask initdb
+	FLASK_APP=$(APPDIR)/__init__.py flask initdb
 
