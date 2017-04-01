@@ -1,15 +1,8 @@
-"""Initializes the flask app and database
-
-Loads condig from config.py
-
-Initializes APP, DB, and SERVER_BIND
-
-"""
-
 import os
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_rest_jsonapi import Api
 
 import bump.config as config
 
@@ -42,8 +35,16 @@ APP = _init_flask()
 DB = SQLAlchemy(APP)
 
 # loads in the Blueprint
-from bump.users.views import MOD as usersModule
-from bump.posts.views import MOD as postsModule
+# from bump.users.views import MOD as usersModule
+# from bump.posts.views import MOD as postsModule
 
-APP.register_blueprint(usersModule)
-APP.register_blueprint(postsModule)
+# APP.register_blueprint(usersModule)
+# APP.register_blueprint(postsModule)
+
+# resources
+from bump.users.resource import UserList, UserDetail, UserRelationship
+
+# api/routes
+api = Api(APP)
+api.route(UserList, 'user_list', '/users')
+api.route(UserDetail, 'user_detail', '/users/<int:id>')
