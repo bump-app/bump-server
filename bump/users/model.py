@@ -6,6 +6,8 @@ from bump.comments.model import Comment
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column(db.DateTime)
+    updated_at = db.Column(db.DateTime)
     name = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))

@@ -9,12 +9,11 @@ class PostSchema(Schema):
 		self_view_many = 'post_list'
 
 	id = fields.Integer(dump_only=True)
+	created_at = fields.DateTime(dump_only=True)
+	updated_at = fields.DateTime(dump_only=True)
 	title = fields.String(required=True)
 	text = fields.String(required=True)
 	rating = fields.Integer(dump_only=True)
-	created_at = fields.DateTime(dump_only=True)
-	updated_at = fields.DateTime(dump_only=True)
-	comment_count = fields.Integer(dump_only=True)
 	user = Relationship(attribute='user',
 						self_view='post_user',
 						self_view_kwargs={'id': '<id>'},
