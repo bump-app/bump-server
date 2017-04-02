@@ -1,25 +1,16 @@
-"""User models
-
-This module contains SQLAlchemy model classes for the users package.
-
-"""
-
 from bump import DB as db
 from bump.users import constants as USER
 
-
 class User(db.Model):
-    """User model class for SQLAlchemy."""
-
-    __tablename__ = 'users_user'
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column(db.DateTime)
+    updated_at = db.Column(db.DateTime)
     name = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
     _role = db.Column(db.SmallInteger, default=USER.USER)
     status = db.Column(db.SmallInteger, default=USER.NEW)
-    posts = db.relationship('Post', backref='user', lazy='dynamic')
-    comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
     def __init__(self, name=None, email=None, password=None):
         self.name = name

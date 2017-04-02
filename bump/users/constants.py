@@ -1,9 +1,3 @@
-"""User constants
-
-This module contains contants used by users package.
-
-"""
-
 # User role
 ADMIN = 0
 USER = 1

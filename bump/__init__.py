@@ -1,15 +1,9 @@
-"""Initializes the flask app and database
-
-Loads condig from config.py
-
-Initializes APP, DB, and SERVER_BIND
-
-"""
-
 import os
 
 from flask import Flask
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from flask_rest_jsonapi import Api
 
 import bump.config as config
 
@@ -19,11 +13,7 @@ SERVER_BIND = ('0.0.0.0', 8000)
 
 
 def _init_flask():
-    """Flask configuration"""
-
     app = Flask(__name__)
-
-    # base config from config.py
     app.config.from_object(config)
     # app.config.from_envvar('YOURAPPLICATION_SETTINGS')
 
@@ -32,7 +22,6 @@ def _init_flask():
         SQLALCHEMY_DATABASE_URI='sqlite:///' + os.path.join(_BASEDIR,
                                                             'bump.db'),
         DATABASE_CONNECT_OPTIONS={},
-        # explicitly set to remove warning
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         ))
     return app
@@ -40,10 +29,9 @@ def _init_flask():
 
 APP = _init_flask()
 DB = SQLAlchemy(APP)
+CORS(APP)
 
-# loads in the Blueprint
-from bump.users.views import MOD as usersModule
-from bump.posts.views import MOD as postsModule
+from bump.routes import Route
 
-APP.register_blueprint(usersModule)
-APP.register_blueprint(postsModule)
+API = Api(APP)
+Route(API)
