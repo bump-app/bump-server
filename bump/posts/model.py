@@ -1,6 +1,5 @@
 from bump import DB as db
 from bump.posts import constants as POST
-from bump.channels.model import Channel
 
 class Post(db.Model):
     __tablename__ = 'posts'
