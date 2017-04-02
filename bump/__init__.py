@@ -47,16 +47,3 @@ from bump.posts.views import MOD as postsModule
 
 APP.register_blueprint(usersModule)
 APP.register_blueprint(postsModule)
-
-
-# create the db using flask's built in cli
-@APP.cli.command('initdb')
-def initdb_command():
-    """
-    Creates the database tables.
-    """
-    print('Initializing database...')
-    DB.create_all()
-    print('Initialized the database.')
-    print('Location: {path}'.format(
-        path=APP.config['SQLALCHEMY_DATABASE_URI']))
