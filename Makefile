@@ -12,16 +12,16 @@ lint: check
 	$(PYTHON) -m pylint $(APPDIR)
 
 init:
-	FLASK_APP=$(APPDIR)/__init__.py flask initdb
+	$(PYTHON) cli.py initdb
+
+reset-db:
+	rm -i $(APPDIR)/$(DB_NAME)
+	$(PYTHON) cli.py initdb
 
 run:
-	$(PYTHON) run.py 
+	$(PYTHON) cli.py run
 
 .PHONY: all test clean
 test:
 	$(PYTHON) -m unittest $(TESTDIR).$(TESTCASE)
-
-reset-db:
-	rm -i $(APPDIR)/$(DB_NAME)
-	FLASK_APP=$(APPDIR)/__init__.py flask initdb
 
