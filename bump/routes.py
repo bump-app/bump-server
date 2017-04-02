@@ -10,10 +10,16 @@ def Route(api):
 	api.route(UserRelationship, 'user_posts', '/users/<int:id>/relationships/posts')
 	api.route(UserRelationship, 'user_comments', '/users/<int:id>/relationships/comments')
 
+	# channels
+	api.route(ChannelList, 'channel_list', '/channels')
+	api.route(ChannelDetail, 'channel_detail', '/channels/<int:id>')
+	api.route(ChannelRelationship, 'channel_posts', '/channels/<int:id>')
+
 	# posts
 	api.route(PostList, 'post_list', '/posts')
 	api.route(PostDetail, 'post_detail', '/posts/<int:id>')
 	api.route(PostRelationship, 'post_user', '/posts/<int:id>/relationships/user')
+	api.route(PostRelationship, 'post_channel', '/posts/<int:id>/relationships/channel')
 	api.route(PostRelationship, 'post_comments', '/posts/<int:id>/relationships/comments')
 
 	# comments

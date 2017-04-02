@@ -21,6 +21,13 @@ class PostSchema(Schema):
 						related_view_kwargs={'id': '<id>'},
 						schema='UserSchema',
 						type_='user')
+	channel = Relationship(attribute='channel',
+						self_view='post_channel',
+						self_view_kwargs={'id': '<id>'},
+						related_view='post_detail',
+						related_view_kwargs={'id': '<id>'},
+						schema='ChannelSchema',
+						type_='channel')
 	comments = Relationship(self_view='post_comments',
 							self_view_kwargs={'id': '<id>'},
 							related_view='comment_list',

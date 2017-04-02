@@ -1,5 +1,6 @@
 from bump import DB as db
 from bump.posts import constants as POST
+from bump.channels.model import Channel
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -11,6 +12,8 @@ class Post(db.Model):
     rating = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('User', backref=db.backref('posts'))
+    channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'))
+    channel = db.relationship('Channel', backref=db.backref('posts'))
 
     def __init__(self, title=None, text=None, user_id=None):
         self.title = title
@@ -20,14 +23,8 @@ class Post(db.Model):
     def get_rating(self):
         return self.rating
 
-    def get_time_posted(self):
-        return self.time_posted
-
     def get_user_id(self):
         return self.user_id
-
-    def get_comment_count(self):
-        return self.comment_count
 
     def __repr__(self):
         return '<Post {title} made by {user_id}>'.format(title=self.title,
