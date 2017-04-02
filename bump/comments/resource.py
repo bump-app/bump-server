@@ -2,8 +2,6 @@ from flask_rest_jsonapi import ResourceDetail, ResourceList, ResourceRelationshi
 from bump import DB as db
 from bump.comments.schema import CommentSchema
 from bump.comments.model import Comment
-from bump.posts.model import Post
-from bump.users.model import User
 
 class CommentList(ResourceList):
 	schema = CommentSchema

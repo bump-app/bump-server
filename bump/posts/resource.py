@@ -2,7 +2,6 @@ from flask_rest_jsonapi import ResourceDetail, ResourceList, ResourceRelationshi
 from bump import DB as db
 from bump.posts.schema import PostSchema
 from bump.posts.model import Post
-from bump.users.model import User
 
 class PostList(ResourceList):
 	schema = PostSchema

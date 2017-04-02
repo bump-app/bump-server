@@ -1,7 +1,5 @@
 from bump import DB as db
 from bump.users import constants as USER
-from bump.posts.model import Post
-from bump.comments.model import Comment
 
 class User(db.Model):
     __tablename__ = 'users'
