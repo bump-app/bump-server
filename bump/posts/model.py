@@ -2,17 +2,15 @@ from bump import DB as db
 from bump.posts import constants as POST
 
 class Post(db.Model):
+    __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(POST.TITLE_LENGTH))
     text = db.Column(db.String(POST.POST_LENGTH))
     rating = db.Column(db.Integer)
     time_posted = db.Column(db.DateTime)
     comment_count = db.Column(db.Integer)
-    user_id = db.Column(db.Integer, db.ForeignKey('user_id'))
-    comments = db.relationship('Comment',
-                               backref='post',
-                               cascade='all',
-                               lazy='dynamic')
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship('User', backref=db.backref('posts'))
 
     def __init__(self, title=None, text=None, user_id=None):
         self.title = title

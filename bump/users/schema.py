@@ -19,7 +19,7 @@ class UserSchema(Schema):
 	posts = Relationship(   self_view='user_posts',
 							self_view_kwargs={'id': '<id>'},
 							related_view='post_list',
-							related_view_kwargs={'id': '<id>'},
+							related_view_kwargs={'user_id': '<id>'},
 							many=True,
 							schema='PostSchema',
 							type_='post')

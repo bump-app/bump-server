@@ -1,18 +1,22 @@
 from flask_rest_jsonapi import ResourceDetail, ResourceList, ResourceRelationship
+from flask_rest_jsonapi.exceptions import ObjectNotFound
+from sqlalchemy.orm.exc import NoResultFound
 from bump import DB as db
-from bump.users import schema, model
+from bump.users.schema import UserSchema
+from bump.users.model import User
+from bump.posts.model import Post
 
 class UserList(ResourceList):
-	schema = schema
+	schema = UserSchema
 	data_layer = {	'session': db.session,
-					'model': model}
+					'model': User}
 
 class UserDetail(ResourceDetail):
-	schema = schema
+	schema = UserSchema
 	data_layer = {	'session': db.session,
-					'model': model}
+					'model': User}
 
 class UserRelationship(ResourceRelationship):
-	schema = schema
+	schema = UserSchema
 	data_layer = {	'session': db.session,
-					'model': model}
+					'model': User}

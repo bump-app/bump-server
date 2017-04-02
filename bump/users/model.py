@@ -1,15 +1,16 @@
 from bump import DB as db
 from bump.users import constants as USER
+from bump.posts.model import Post
+from bump.comments.model import Comment
 
 class User(db.Model):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
     _role = db.Column(db.SmallInteger, default=USER.USER)
     status = db.Column(db.SmallInteger, default=USER.NEW)
-    posts = db.relationship('Post', backref='user', lazy='dynamic')
-    comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
     def __init__(self, name=None, email=None, password=None):
         self.name = name
