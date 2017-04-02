@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_rest_jsonapi import Api
 
@@ -28,6 +29,7 @@ def _init_flask():
 
 APP = _init_flask()
 DB = SQLAlchemy(APP)
+CORS(APP)
 
 # resources
 from bump.users.resource import UserList, UserDetail, UserRelationship
