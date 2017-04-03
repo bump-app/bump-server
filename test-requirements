@@ -1,0 +1,9 @@
+# unit test requirements
+nose
+unittest2
+coverage
+
+# style checking requirements
+flake8>=3.3.0
+pep8>=1.5.0
+pyflakes>=1.5.0
