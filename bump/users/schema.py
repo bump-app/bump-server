@@ -16,6 +16,13 @@ class UserSchema(Schema):
     password = fields.String(required=True, load_only=True)
     _role = fields.Integer(dump_only=True)
     status = fields.Integer(dump_only=True)
+    friends = Relationship( self_view='user_friends',
+                            self_view_kwargs={'id': '<id>'},
+                            related_view='user_list',
+                            related_view_kwargs={'user_id': '<id>'},
+                            many=True,
+                            schema='UserSchema',
+                            type_='user')
     subscriptions = Relationship(   self_view='user_subscriptions',
                                     self_view_kwargs={'id': '<id>'},
                                     related_view='subscription_list',

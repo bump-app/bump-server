@@ -1,6 +1,9 @@
 from bump import DB as db
 from bump.users import constants as USER
 
+friends = db.Table('friends',   db.Column('user_id', db.Integer, db.ForeignKey('users.id'), index=True),
+                                db.Column('friend_id', db.Integer, db.ForeignKey('users.id')))
+
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -14,6 +17,10 @@ class User(db.Model):
     subscriptions = db.relationship('Subscription', backref='user')
     posts = db.relationship('Post', backref='user')
     comments = db.relationship('Comment', backref='user')
+    friends = db.relationship(  'User',
+                                secondary=friends,
+                                primaryjoin=(id == friends.c.user_id),
+                                secondaryjoin=(id == friends.c.friend_id))
 
     def __init__(self, name=None, email=None, password=None):
         self.name = name
