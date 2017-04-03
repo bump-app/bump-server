@@ -13,6 +13,13 @@ class ChannelSchema(Schema):
     updated_at = fields.DateTime(dump_only=True)
     name = fields.String(required=True)
     desc = fields.String(required=True)
+    subscribers = Relationship(   self_view='channel_subscribers',
+                            self_view_kwargs={'id': '<id>'},
+                            related_view='subscription_list',
+                            related_view_kwargs={'channel_id': '<id>'},
+                            many=True,
+                            schema='SubscriptionSchema',
+                            type_='subscription')
     posts = Relationship(   self_view='channel_posts',
                             self_view_kwargs={'id': '<id>'},
                             related_view='post_list',

@@ -1,19 +1,28 @@
 from bump.users.resource import UserList, UserDetail, UserRelationship
+from bump.channels.resource import ChannelList, ChannelDetail, ChannelRelationship
+from bump.subscriptions.resource import SubscriptionList, SubscriptionDetail, SubscriptionRelationship
 from bump.posts.resource import PostList, PostDetail, PostRelationship
 from bump.comments.resource import CommentList, CommentDetail, CommentRelationship
-from bump.channels.resource import ChannelList, ChannelDetail, ChannelRelationship
 
 def Route(api):
 	# users
 	api.route(UserList, 'user_list', '/users')
 	api.route(UserDetail, 'user_detail', '/users/<int:id>')
+	api.route(UserRelationship, 'user_subscriptions', '/users/<int:id>/relationships/subscriptions')
 	api.route(UserRelationship, 'user_posts', '/users/<int:id>/relationships/posts')
 	api.route(UserRelationship, 'user_comments', '/users/<int:id>/relationships/comments')
 
 	# channels
 	api.route(ChannelList, 'channel_list', '/channels')
 	api.route(ChannelDetail, 'channel_detail', '/channels/<int:id>')
-	api.route(ChannelRelationship, 'channel_posts', '/channels/<int:id>')
+	api.route(ChannelRelationship, 'channel_subscribers', '/channels/<int:id>/relationships/subscribers')
+	api.route(ChannelRelationship, 'channel_posts', '/channels/<int:id>/relationships/posts')
+
+	# subscriptions
+	api.route(SubscriptionList, 'subscription_list', '/subscriptions')
+	api.route(SubscriptionDetail, 'subscription_detail', '/subscriptions/<int:id>')
+	api.route(SubscriptionRelationship, 'subscription_user', '/subscriptions/<int:id>/relationships/user')
+	api.route(SubscriptionRelationship, 'subscription_channel', '/subscriptions/<int:id>/relationships/channel')
 
 	# posts
 	api.route(PostList, 'post_list', '/posts')
