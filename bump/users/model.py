@@ -12,6 +12,8 @@ class User(db.Model):
     _role = db.Column(db.SmallInteger, default=USER.USER)
     status = db.Column(db.SmallInteger, default=USER.NEW)
     subscriptions = db.relationship('Subscription', backref='user')
+    posts = db.relationship('Post', backref='user')
+    comments = db.relationship('Comment', backref='user')
 
     def __init__(self, name=None, email=None, password=None):
         self.name = name

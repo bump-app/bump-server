@@ -10,9 +10,8 @@ class Post(db.Model):
     text = db.Column(db.String(POST.POST_LENGTH))
     rating = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user = db.relationship('User', backref='posts')
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'))
-    channel = db.relationship('Channel', backref='posts')
+    comments = db.relationship('Comment', backref='post')
 
     def __init__(self, title=None, text=None, user_id=None):
         self.title = title

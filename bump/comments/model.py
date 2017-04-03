@@ -9,9 +9,7 @@ class Comment(db.Model):
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
-    post = db.relationship('Post', backref='comments')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user = db.relationship('User', backref='comments')
 
     def __init__(self, text=None, post_id=None, user_id=None):
         self.text = text
