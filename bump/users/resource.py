@@ -1,5 +1,5 @@
 from flask_rest_jsonapi import ResourceDetail, ResourceList, ResourceRelationship
-from bump import DB as db
+from bump import DB as db, oauth2
 from bump.users.schema import UserSchema
 from bump.users.model import User
 
@@ -7,6 +7,7 @@ class UserList(ResourceList):
 	schema = UserSchema
 	data_layer = {	'session': db.session,
 					'model': User}
+	get_decorators = [oauth2.require_oauth('list_user')]
 
 class UserDetail(ResourceDetail):
 	schema = UserSchema

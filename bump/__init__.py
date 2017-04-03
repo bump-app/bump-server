@@ -4,6 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_rest_jsonapi import Api
+from flask_oauthlib.provider import OAuth2Provider
 
 import bump.config as config
 
@@ -31,7 +32,13 @@ APP = _init_flask()
 DB = SQLAlchemy(APP)
 CORS(APP)
 
+api = Api(APP)
+oauth2 = OAuth2Provider(APP)
+
+import bump.auth
+
+api.oauth_manager(oauth2)
+
 from bump.routes import Route
 
-API = Api(APP)
-Route(API)
+Route(api)
