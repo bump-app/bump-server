@@ -1,13 +1,13 @@
 from bump import DB as db
-from bump.auth.client import Client
+# from bump.auth.client import Client
 from bump.users.model import User
 
 def seed():
-	test_client = Client(	id="test",
-							secret="fWT4BneGtcENqNRgRQRujouX",
-							name="test",
-							is_confidential="false")
-	db.session.add(test_client)
+	# test_client = Client(	id="test",
+	# 						secret="fWT4BneGtcENqNRgRQRujouX",
+	# 						name="test",
+	# 						is_confidential="false")
+	# db.session.add(test_client)
 
 	matt = User(name="matthewdias",
 				email="matthewdias@asdf.com",
