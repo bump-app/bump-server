@@ -1,5 +1,6 @@
 import sys
 from bump import APP, DB, SERVER_BIND
+from bump.seeds import seed
 
 def run():
     APP.run(host=SERVER_BIND[0],
@@ -14,5 +15,7 @@ def initdb():
 
 if sys.argv[1] == 'initdb':
     initdb()
+elif sys.argv[1] == 'seed':
+	seed()
 else:
     run()
