@@ -1,6 +1,7 @@
 from bump import DB as db
 # from bump.auth.client import Client
 from bump.users.model import User
+from bump.channels.model import Channel
 
 def seed():
 	# test_client = Client(	id="test",
@@ -15,6 +16,15 @@ def seed():
 				_role=1,
 				status=2)
 	db.session.add(matt)
+
+	overwatch = Channel(name="overwatch",
+						description="overwatch description")
+	db.session.add(overwatch)
+
+	pad = Channel(name="pad",
+						description="pad description")
+	db.session.add(pad)
+
 
 	try:
 		db.session.commit()
