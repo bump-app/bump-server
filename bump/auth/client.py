@@ -1,6 +1,7 @@
-from bump import DB as db, oauth2
+from bump import DB as db
 
 class Client(db.Model):
+	__tablename__ = 'clients'
 	id = db.Column(db.String(40), primary_key=True)
 	secret = db.Column(db.String(55), unique=True, index=True, nullable=False)
 	name = db.Column(db.String(40))
@@ -33,6 +34,6 @@ class Client(db.Model):
 			return self._default_scopes.split()
 		return []
 
-@oauth2.clientgetter
-def load_client(client_id):
-	return Client.query.filter_by(client_id=client_id).first()
+	@property
+	def allowed_grant_types(self):
+		return ['authorization_code', 'password', 'client_credentials', 'refresh_token']

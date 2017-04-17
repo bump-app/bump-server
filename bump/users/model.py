@@ -25,16 +25,14 @@ class User(db.Model):
                                 primaryjoin=(id == friends.c.user_id),
                                 secondaryjoin=(id == friends.c.friend_id))
 
-    def __init__(self, name=None, email=None, password=None):
-        self.name = name
-        self.email = email
-        self.password = password
-
     def get_status(self):
         return USER.STATUS[self.status]
 
     def get_role(self):
         return USER.ROLE[self._role]
+
+    def check_password(self, password):
+        return self.password == password
 
     def __repr__(self):
         return '<User {name}>'.format(name=self.name)
