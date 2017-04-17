@@ -12,7 +12,7 @@ class ChannelSchema(Schema):
     created_at = fields.DateTime(dump_only=True)
     updated_at = fields.DateTime(dump_only=True)
     name = fields.String(required=True)
-    desc = fields.String(required=True)
+    description = fields.String(required=True)
     subscribers = Relationship( self_view='channel_subscribers',
                                 self_view_kwargs={'id': '<id>'},
                                 related_view='subscription_list',
