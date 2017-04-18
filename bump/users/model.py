@@ -33,6 +33,3 @@ class User(db.Model):
 
     def check_password(self, password):
         return self.password == password
-
-    def __repr__(self):
-        return '<User {name}>'.format(name=self.name)

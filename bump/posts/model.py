@@ -12,18 +12,3 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'))
     comments = db.relationship('Comment', backref='post')
-
-    def __init__(self, title=None, text=None, user_id=None):
-        self.title = title
-        self.text = text
-        self.user_id = user_id
-
-    def get_rating(self):
-        return self.rating
-
-    def get_user_id(self):
-        return self.user_id
-
-    def __repr__(self):
-        return '<Post {title} made by {user_id}>'.format(title=self.title,
-                                                         user_id=self.user_id)

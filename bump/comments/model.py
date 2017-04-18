@@ -10,8 +10,3 @@ class Comment(db.Model):
     updated_at = db.Column(db.DateTime)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
-    def __init__(self, text=None, post_id=None, user_id=None):
-        self.text = text
-        self.post_id = post_id
-        self.user_id = user_id
