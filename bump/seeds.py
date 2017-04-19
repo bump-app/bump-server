@@ -27,7 +27,7 @@ def seed():
 						description="pad description")
 
 	# posts
-	p1 = Post(	title="1title",
+	p1 = Post(	link="https://www.youtube.com/watch?v=Qt5vWqSFC48",
 				text="1text",
 				user=matt,
 				channel=overwatch)
