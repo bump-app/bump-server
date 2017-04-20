@@ -3,7 +3,7 @@ from marshmallow_jsonapi import fields
 
 class PostSchema(Schema):
     class Meta:
-        type_ = 'post'
+        type_ = 'posts'
         self_view = 'post_detail'
         self_view_kwargs = {'id': '<id>'}
         self_view_many = 'post_list'

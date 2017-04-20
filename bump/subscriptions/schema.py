@@ -3,7 +3,7 @@ from marshmallow_jsonapi import fields
 
 class SubscriptionSchema(Schema):
     class Meta:
-        type_ = 'subscription'
+        type_ = 'subscriptions'
         self_view = 'subscription_detail'
         self_view_kwargs = {'id': '<id>'}
         self_view_many = 'subscription_list'

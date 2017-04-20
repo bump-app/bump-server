@@ -3,7 +3,7 @@ from marshmallow_jsonapi import fields
 
 class CommentSchema(Schema):
 	class Meta:
-		type_ = 'comment'
+		type_ = 'comments'
 		self_view = 'comment_detail'
 		self_view_kwargs = {'id': '<id>'}
 		self_view_many = 'comment_list'

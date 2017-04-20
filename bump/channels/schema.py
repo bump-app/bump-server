@@ -3,7 +3,7 @@ from marshmallow_jsonapi import fields
 
 class ChannelSchema(Schema):
     class Meta:
-        type_ = 'channel'
+        type_ = 'channels'
         self_view = 'channel_detail'
         self_view_kwargs = {'id': '<id>'}
         self_view_many = 'channel_list'
