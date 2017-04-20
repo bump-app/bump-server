@@ -10,7 +10,7 @@ import bump.config as config
 
 _BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
-SERVER_BIND = ('0.0.0.0', 8000)
+SERVER_BIND = ('0.0.0.0', 80)
 
 APP = Flask(__name__, template_folder='templates')
 APP.config.from_object(config)
