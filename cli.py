@@ -17,5 +17,5 @@ if sys.argv[1] == 'initdb':
     initdb()
 elif sys.argv[1] == 'seed':
 	seed()
-else:
+elif sys.argv[1] == 'run':
     run()

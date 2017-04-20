@@ -11,7 +11,7 @@ check:
 lint: check
 	$(PYTHON) -m pylint $(APPDIR)
 
-init:
+init-db:
 	$(PYTHON) cli.py initdb
 
 reset-db:
