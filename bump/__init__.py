@@ -8,8 +8,6 @@ from flask_rest_jsonapi import Api
 
 import bump.config as config
 
-_BASEDIR = os.path.abspath(os.path.dirname(__file__))
-
 SERVER_BIND = ('0.0.0.0', 80)
 
 APP = Flask(__name__, template_folder='templates')
@@ -17,8 +15,7 @@ APP.config.from_object(config)
 # app.config.from_envvar('YOURAPPLICATION_SETTINGS')
 
 APP.config.update(dict(
-    SQLALCHEMY_DATABASE_URI='sqlite:///' + os.path.join(_BASEDIR,
-                                                        'bump.db'),
+    SQLALCHEMY_DATABASE_URI=os.environ['DATABASE_URL'],
     DATABASE_CONNECT_OPTIONS={},
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
     ))

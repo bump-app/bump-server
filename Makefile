@@ -15,8 +15,7 @@ init-db:
 	$(PYTHON) cli.py initdb
 
 reset-db:
-	rm -i $(APPDIR)/$(DB_NAME)
-	$(PYTHON) cli.py initdb
+	$(PYTHON) cli.py resetdb
 
 seed:
 	$(PYTHON) cli.py seed

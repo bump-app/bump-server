@@ -6,6 +6,11 @@ def run():
     APP.run(host=SERVER_BIND[0],
             port=SERVER_BIND[1])
 
+def dropdb():
+    print('Dropping database...')
+    DB.drop_all()
+    print('Dropped the database.')
+
 def initdb():
     print('Initializing database...')
     DB.create_all()
@@ -14,6 +19,9 @@ def initdb():
         path=APP.config['SQLALCHEMY_DATABASE_URI']))
 
 if sys.argv[1] == 'initdb':
+    initdb()
+elif sys.argv[1] == 'resetdb':
+    dropdb()
     initdb()
 elif sys.argv[1] == 'seed':
 	seed()
