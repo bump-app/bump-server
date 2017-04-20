@@ -1,14 +1,13 @@
 from bump import DB as db
+from bump.base_model import Base
 from bump.users import constants as USER
 
 friends = db.Table('friends',   db.Column('user_id', db.Integer, db.ForeignKey('users.id'), index=True),
                                 db.Column('friend_id', db.Integer, db.ForeignKey('users.id')))
 
-class User(db.Model):
+class User(db.Model, Base):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime)
-    updated_at = db.Column(db.DateTime)
     name = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))

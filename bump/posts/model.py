@@ -1,11 +1,10 @@
 from bump import DB as db
+from bump.base_model import Base
 from bump.posts import constants as POST
 
-class Post(db.Model):
+class Post(db.Model, Base):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime)
-    updated_at = db.Column(db.DateTime)
     link = db.Column(db.String)
     text = db.Column(db.String(POST.TEXT_LENGTH))
     rating = db.Column(db.Integer)

@@ -1,9 +1,8 @@
 from bump import DB as db
+from bump.base_model import Base
 
-class Subscription(db.Model):
+class Subscription(db.Model, Base):
     __tablename__ = 'subscriptions'
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime)
-    updated_at = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'))
