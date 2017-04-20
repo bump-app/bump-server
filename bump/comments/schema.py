@@ -19,11 +19,11 @@ class CommentSchema(Schema):
 						related_view='post_detail',
 						related_view_kwargs={'id': '<id>'},
 						schema='PostSchema',
-						type_='post')
+						type_='posts')
 	user = Relationship(attribute='user',
 						self_view='comment_user',
 						self_view_kwargs={'id': '<id>'},
 						related_view='user_detail',
 						related_view_kwargs={'id': '<id>'},
 						schema='UserSchema',
-						type_='user')
+						type_='users')

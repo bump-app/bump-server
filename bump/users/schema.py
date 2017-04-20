@@ -22,25 +22,25 @@ class UserSchema(Schema):
                             related_view_kwargs={'user_id': '<id>'},
                             many=True,
                             schema='UserSchema',
-                            type_='user')
+                            type_='users')
     subscriptions = Relationship(   self_view='user_subscriptions',
                                     self_view_kwargs={'id': '<id>'},
                                     related_view='subscription_list',
                                     related_view_kwargs={'user_id': '<id>'},
                                     many=True,
                                     schema='SubscriptionSchema',
-                                    type_='subscription')
+                                    type_='subscriptions')
     posts = Relationship(   self_view='user_posts',
                             self_view_kwargs={'id': '<id>'},
                             related_view='post_list',
                             related_view_kwargs={'user_id': '<id>'},
                             many=True,
                             schema='PostSchema',
-                            type_='post')
+                            type_='posts')
     comments = Relationship(self_view='user_comments',
                             self_view_kwargs={'id': '<id>'},
                             related_view='comment_list',
                             related_view_kwargs={'id': '<id>'},
                             many=True,
                             schema='CommentSchema',
-                            type_='comment')
+                            type_='comments')

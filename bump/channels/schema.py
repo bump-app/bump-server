@@ -19,11 +19,11 @@ class ChannelSchema(Schema):
                                 related_view_kwargs={'channel_id': '<id>'},
                                 many=True,
                                 schema='SubscriptionSchema',
-                                type_='subscription')
+                                type_='subscriptions')
     posts = Relationship(   self_view='channel_posts',
                             self_view_kwargs={'id': '<id>'},
                             related_view='post_list',
                             related_view_kwargs={'channel_id': '<id>'},
                             many=True,
                             schema='PostSchema',
-                            type_='post')
+                            type_='posts')

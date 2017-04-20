@@ -17,11 +17,11 @@ class SubscriptionSchema(Schema):
                         related_view='subscription_detail',
                         related_view_kwargs={'id': '<id>'},
                         schema='UserSchema',
-                        type_='user')
+                        type_='users')
     channel = Relationship(attribute='channel',
                         self_view='subscription_channel',
                         self_view_kwargs={'id': '<id>'},
                         related_view='subscription_detail',
                         related_view_kwargs={'id': '<id>'},
                         schema='ChannelSchema',
-                        type_='channel')
+                        type_='channels')
