@@ -12,6 +12,7 @@ class PostSchema(Schema):
     created_at = fields.DateTime(dump_only=True)
     updated_at = fields.DateTime(dump_only=True)
     link = fields.Url()
+    link_formatted = fields.String(dump_only=True)
     text = fields.String(required=True)
     rating = fields.Integer(dump_only=True)
     user = Relationship(attribute='user',
