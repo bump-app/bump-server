@@ -14,12 +14,9 @@ class Post(db.Model, Base):
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'))
     comments = db.relationship('Comment', backref='post')
 
-    def __init__(self, link, text, user, channel):
-        self.link = link
+    def __init__(self, **kwargs):
+        super(Post, self).__init__(**kwargs)
         try:
-            self.link_formatted = PyEmbed().embed(link)
+            self.link_formatted = PyEmbed().embed(kwargs['link'])
         except:
             pass
-        self.text = text
-        self.user = user
-        self.channel = channel
