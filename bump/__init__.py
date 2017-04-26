@@ -4,7 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_rest_jsonapi import Api
-# from flask_oauthlib.provider import OAuth2Provider, OAuth2RequestValidator
+from flask_oauthlib.provider import OAuth2Provider, OAuth2RequestValidator
 
 import bump.config as config
 
@@ -24,20 +24,20 @@ DB = SQLAlchemy(APP)
 CORS(APP)
 
 api = Api(APP)
-# oauth2 = OAuth2Provider(APP)
+oauth2 = OAuth2Provider(APP)
 
-# class MyValidator(OAuth2RequestValidator):
-#     def authenticate_client_id(client_id, request, *args, **kwargs):
-#         request.client.client_id = client_id
+#class MyValidator(OAuth2RequestValidator):
+    #def authenticate_client_id(client_id, request, *args, **kwargs):
+        #request.client.client_id = client_id
 
-#     def authenticate_client(request, *args, **kwargs):
-        # request.client.client_id = 'test'
+    #def authenticate_client(request, *args, **kwargs):
+        #request.client.client_id = 'test'
 
-# import bump.auth
-# from bump.auth import load_client, load_token, load_grant
+import bump.auth
+#from bump.auth import load_client, load_token, load_grant
 
-# oauth2._validator = MyValidator(load_client, load_token, load_grant)
-# api.oauth_manager(oauth2)
+#oauth2._validator = MyValidator(load_client, load_token, load_grant)
+api.oauth_manager(oauth2)
 
 from bump.routes import Route
 

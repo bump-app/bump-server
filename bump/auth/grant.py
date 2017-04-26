@@ -8,7 +8,7 @@ class Grant(db.Model):
 	expires = db.Column(db.DateTime)
 	_scopes = db.Column(db.Text)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'))
-	client_id = db.Column(db.String(40), db.ForeignKey('clients.id'), nullable=False)
+	client_id = db.Column(db.String(40), db.ForeignKey('clients.client_id'), nullable=False)
 
 	def delete(self):
 		db.session.delete(self)

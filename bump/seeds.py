@@ -1,16 +1,16 @@
 from bump import DB as db
-# from bump.auth.client import Client
+from bump.auth.client import Client
 from bump.users.model import User
 from bump.channels.model import Channel
 from bump.posts.model import Post
 
 def seed():
-        # test client
-        # test_client = Client( id="test",
-        #                                               secret="fWT4BneGtcENqNRgRQRujouX",
-        #                                               name="test",
-        #                                               is_confidential="false")
-        # db.session.add(test_client)
+        test_client = Client( client_id="test",
+                                                      secret="notverysecret",
+                                                      name="test",
+                                                      is_confidential="false",
+                                                      _redirect_uris="dummyurl")
+        db.session.add(test_client)
 
         # users
         matt = User(name="matthewdias",
@@ -21,7 +21,7 @@ def seed():
 
         will = User(name="whitey",
                                 email="will@asdf.com",
-                                password="totallysecurepassword",
+                                password="123",
                                 _role=1,
                                 status=2)
 
