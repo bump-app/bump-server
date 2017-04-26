@@ -8,7 +8,7 @@ class Token(db.Model):
 	refresh_token = db.Column(db.String(255), unique=True)
 	expires = db.Column(db.DateTime)
 	_scopes = db.Column(db.Text)
-	client_id = db.Column(db.String(40), db.ForeignKey('clients.id'), nullable=False)
+	client_id = db.Column(db.String(40), db.ForeignKey('clients.client_id'), nullable=False)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 	def delete(self):

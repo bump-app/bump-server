@@ -2,7 +2,7 @@ from bump import DB as db
 
 class Client(db.Model):
 	__tablename__ = 'clients'
-	id = db.Column(db.String(40), primary_key=True)
+	client_id = db.Column(db.String(40), primary_key=True)
 	secret = db.Column(db.String(55), unique=True, index=True, nullable=False)
 	name = db.Column(db.String(40))
 	is_confidential = db.Column(db.Boolean)
