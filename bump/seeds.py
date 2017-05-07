@@ -13,17 +13,19 @@ def seed():
         db.session.add(test_client)
 
         # users
-        matt = User(name="matthewdias",
-                                email="matthewdias@asdf.com",
-                                password="totallysecurepassword",
-                                _role=1,
-                                status=2)
+        matt = User(first_name="Matt",
+                    last_name="Dias",
+                    email="matthewdias@asdf.com",
+                    password="totallysecurepassword",
+                    _role=1,
+                    status=2)
 
-        will = User(name="whitey",
-                                email="will@asdf.com",
-                                password="123",
-                                _role=1,
-                                status=2)
+        will = User(first_name="Will",
+                    last_name="Lin",
+                    email="wlsaidhi@gmail.com",
+                    password="1234",
+                    _role=1,
+                    status=2)
 
         # channels
         overwatch = Channel(name="overwatch",
