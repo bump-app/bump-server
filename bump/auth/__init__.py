@@ -8,9 +8,9 @@ from bump.auth.token import Token
 
 # user
 @oauth2.usergetter
-def get_user(username, password, *args, **kwargs):
-    user = User.query.filter_by(name=username).first()
-    if user.check_password(password):
+def get_user(email, password, *args, **kwargs):
+    user = User.query.filter_by(email=email).first()
+    if user and user.check_password(password):
         return user
     return None
 

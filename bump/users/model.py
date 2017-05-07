@@ -8,7 +8,8 @@ friends = db.Table('friends',   db.Column('user_id', db.Integer, db.ForeignKey('
 class User(db.Model, Base):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), unique=True)
+    first_name = db.Column(db.String(50), unique=False)
+    last_name = db.Column(db.String(50), unique=False)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
     _role = db.Column(db.SmallInteger, default=USER.USER)
