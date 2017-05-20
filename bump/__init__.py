@@ -4,7 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_rest_jsonapi import Api
-from flask_oauthlib.provider import OAuth2Provider, OAuth2RequestValidator
+from flask_oauthlib.provider import OAuth2Provider
 from flask_mail import Mail
 
 import bump.config as config
@@ -42,18 +42,19 @@ oauth2 = OAuth2Provider(APP)
 
 MAIL = Mail(APP)
 
-#class MyValidator(OAuth2RequestValidator):
-    #def authenticate_client_id(client_id, request, *args, **kwargs):
-        #request.client.client_id = client_id
+#def permission_manager(view, view_args, view_kwargs, *args, **kwargs):
+    #"""The function use to check permissions
 
-    #def authenticate_client(request, *args, **kwargs):
-        #request.client.client_id = 'test'
+    #:param callable view: the view
+    #:param list view_args: view args
+    #:param dict view_kwargs: view kwargs
+    #:param list args: decorator args
+    #:param dict kwargs: decorator kwargs
+    #"""
+    #import sys
+    #print("testing permissiuons", file=sys.stderr)
 
-import bump.auth
-#from bump.auth import load_client, load_token, load_grant
-
-#oauth2._validator = MyValidator(load_client, load_token, load_grant)
-api.oauth_manager(oauth2)
+#api.permission_manager(permission_manager)
 
 from bump.routes import Route
 
