@@ -6,7 +6,7 @@ from bump.auth.client import Client
 from bump.auth.grant import Grant
 from bump.auth.token import Token
 
-# user
+
 @oauth2.usergetter
 def get_user(email, password, *args, **kwargs):
     user = User.query.filter_by(email=email).first()
@@ -73,7 +73,7 @@ def save_token(token, request, *args, **kwargs):
 @app.route('/oauth/token', methods=['GET', 'POST'])
 @oauth2.token_handler
 def access_token():
-    return {}
+    return None
 
 @app.route('/oauth/revoke', methods=['POST'])
 @oauth2.revoke_handler
