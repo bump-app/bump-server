@@ -28,11 +28,9 @@ def seed():
                     status=2)
 
         # channels
-        overwatch = Channel(name="overwatch",
-                                                description="overwatch description")
+        overwatch = Channel(name="overwatch", description="overwatch description")
 
-        pad = Channel(name="pad",
-                                                description="pad description")
+        pad = Channel(name="pad", description="pad description")
 
         # posts
         p1 = Post(      link="https://www.youtube.com/watch?v=Qt5vWqSFC48",
