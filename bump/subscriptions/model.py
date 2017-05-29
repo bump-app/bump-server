@@ -6,3 +6,6 @@ class Subscription(db.Model, Base):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'))
+    __table_args__ = (db.UniqueConstraint('user_id', 'channel_id',
+        name='_user_channel_uc'),
+        )

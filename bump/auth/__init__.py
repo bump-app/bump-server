@@ -14,6 +14,7 @@ def get_user(email, password, *args, **kwargs):
         return user
     return None
 
+# FIXME this should not be used. not sure how to redo this
 def current_user():
     if 'id' in db.session:
         uid = db.session['id']
