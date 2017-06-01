@@ -57,5 +57,17 @@ MAIL = Mail(APP)
 #api.permission_manager(permission_manager)
 
 from bump.routes import Route
+from bump.auth.token import Token
+from bump.users.model import User
+from bump.users.schema import UserSchema
+from flask import request, jsonify
 
 Route(api)
+
+@APP.route('/me')
+def current_user():
+    access_token = request.headers['Authorization'].split(' ')[1]
+    token = Token.query.filter_by(access_token=access_token).first()
+    user = User.query.get(token.user_id)
+    user_schema = UserSchema()
+    return jsonify(user_schema.dump(user).data)
