@@ -19,9 +19,9 @@ class SubscriptionSchema(Schema):
                         schema='UserSchema',
                         type_='users')
     channel = Relationship(attribute='channel',
-                        self_view='subscription_channel',
-                        self_view_kwargs={'id': '<id>'},
-                        related_view='subscription_detail',
-                        related_view_kwargs={'id': '<id>'},
-                        schema='ChannelSchema',
-                        type_='channels')
+                           self_view='subscription_channel',
+                           self_view_kwargs={'id': '<id>'},
+                           related_view='subscription_detail',
+                           related_view_kwargs={'id': '<id>'},
+                           schema='ChannelSchema',
+                           type_='channels')

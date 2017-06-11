@@ -20,10 +20,14 @@ class User(db.Model, Base):
     subscriptions = db.relationship('Subscription', backref='user')
     posts = db.relationship('Post', backref='user')
     comments = db.relationship('Comment', backref='user')
-    friends = db.relationship(  'User',
-                                secondary=friends,
-                                primaryjoin=(id == friends.c.user_id),
-                                secondaryjoin=(id == friends.c.friend_id))
+    friendships = db.relationship('Friendship', 
+                                  backref='user',
+                                  foreign_keys="Friendship.user_id")
+    friendships_r = db.relationship('Friendship',
+                                    backref='friend',
+                                    foreign_keys="Friendship.friend_id")
+                                  #primaryjoin="(User.id == Friendship.user_id)")
+                                  #secondaryjoin="(User.id == Friendship.friend_id)")
 
     def get_status(self):
         return USER.STATUS[self.status]
