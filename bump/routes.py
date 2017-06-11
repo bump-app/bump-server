@@ -1,4 +1,5 @@
 from bump.users.resource import UserList, UserDetail, UserRelationship
+from bump.friendships.resource import FriendshipList, FriendshipDetail, FriendshipRelationship
 from bump.channels.resource import ChannelList, ChannelDetail, ChannelRelationship
 from bump.subscriptions.resource import SubscriptionList, SubscriptionDetail, SubscriptionRelationship
 from bump.posts.resource import PostList, PostDetail, PostRelationship
@@ -8,10 +9,16 @@ def Route(api):
     # users
     api.route(UserList, 'user_list', '/users')
     api.route(UserDetail, 'user_detail', '/users/<int:id>')
-    api.route(UserRelationship, 'user_friends', '/users/<int:id>/relationships/friends')
+    api.route(UserRelationship, 'user_friendships', '/users/<int:id>/relationships/friendships')
     api.route(UserRelationship, 'user_subscriptions', '/users/<int:id>/relationships/subscriptions')
     api.route(UserRelationship, 'user_posts', '/users/<int:id>/relationships/posts')
     api.route(UserRelationship, 'user_comments', '/users/<int:id>/relationships/comments')
+
+    # friendships
+    api.route(FriendshipList, 'friendship_list', '/friendships')
+    api.route(FriendshipDetail, 'friendship_detail', '/friendships/<int:id>')
+    api.route(FriendshipRelationship, 'friendship_user', '/friendships/<int:id>/relationships/user')
+    api.route(FriendshipRelationship, 'friendship_friend', '/friendships/<int:id>/relationships/friend')
 
     # channels
     api.route(ChannelList, 'channel_list', '/channels')
