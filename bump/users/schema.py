@@ -18,12 +18,12 @@ class UserSchema(Schema):
     _role = fields.Integer(dump_only=True)
     status = fields.Integer(dump_only=True)
     friendships = Relationship( self_view='user_friendships',
-                            self_view_kwargs={'id': '<id>'},
-                            related_view='user_list',
-                            related_view_kwargs={'user_id': '<id>'},
-                            many=True,
-                            schema='FriendshipSchema',
-                            type_='friendships')
+                                self_view_kwargs={'id': '<id>'},
+                                related_view='user_list',
+                                related_view_kwargs={'user_id': '<id>'},
+                                many=True,
+                                schema='FriendshipSchema',
+                                type_='friendships')
     subscriptions = Relationship(   self_view='user_subscriptions',
                                     self_view_kwargs={'id': '<id>'},
                                     related_view='subscription_list',
