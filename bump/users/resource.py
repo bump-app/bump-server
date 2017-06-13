@@ -21,17 +21,17 @@ def after_create_object(self, obj, data, **view_kwargs):
 
 class UserList(ResourceList):
 	schema = UserSchema
-	data_layer = {	'session': db.session,
-                        'model': User,
-                        'after_create_object': after_create_object}
+	data_layer = { 'session': db.session,
+                   'model': User,
+                   'after_create_object': after_create_object }
 	# get_decorators = [oauth2.require_oauth('list_user')]
 
 class UserDetail(ResourceDetail):
 	schema = UserSchema
-	data_layer = {	'session': db.session,
-					'model': User}
+	data_layer = { 'session': db.session,
+				   'model': User }
 
 class UserRelationship(ResourceRelationship):
 	schema = UserSchema
-	data_layer = {	'session': db.session,
-					'model': User}
+	data_layer = { 'session': db.session,
+				   'model': User }
