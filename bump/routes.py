@@ -9,7 +9,8 @@ def Route(api):
     # users
     api.route(UserList, 'user_list', '/users')
     api.route(UserDetail, 'user_detail', '/users/<int:id>')
-    api.route(UserRelationship, 'user_friendships', '/users/<int:id>/relationships/friendships')
+    api.route(UserRelationship, 'user_friendships_sent', '/users/<int:id>/relationships/friendships_sent')
+    api.route(UserRelationship, 'user_friendships_recieved', '/users/<int:id>/relationships/friendships_recieved')
     api.route(UserRelationship, 'user_subscriptions', '/users/<int:id>/relationships/subscriptions')
     api.route(UserRelationship, 'user_posts', '/users/<int:id>/relationships/posts')
     api.route(UserRelationship, 'user_comments', '/users/<int:id>/relationships/comments')
