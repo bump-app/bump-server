@@ -7,7 +7,7 @@ from bump.users.schema import UserSchema
 from bump.users.model import User
 
 
-# move mail related methods out
+# FIXME move mail related methods out
 def send_confirmation(user):
     #with mail.record_messages() as outbox:
     msg = Message("confirmation from bump", recipients=[user['email']])
@@ -16,7 +16,7 @@ def send_confirmation(user):
     mail.send(msg)
         #print(outbox[0], file=sys.stderr)
 
-def after_create_object(self, obj, data, **view_kwargs):
+def after_create_object(self, obj, data, view_kwargs):
     send_confirmation(obj)
 
 class UserList(ResourceList):
