@@ -18,5 +18,5 @@ COPY . /opt/bump/server
 ENV DATABASE_URL=postgresql://postgres:mysecretpassword@postgres/
 # ENV REDIS_URL=redis://redis/1
 
-CMD ["make", "run"]
+CMD ["python3", "manage.py", "runserver", "0:80"]
 EXPOSE 80
