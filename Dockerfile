@@ -1,16 +1,14 @@
-FROM ubuntu:latest
+FROM rails:5.0
 MAINTAINER bump-app <https://github.com/bump-app>
-
-RUN apt-get update -y
-RUN apt-get install -y python3-pip python-dev build-essential
 
 RUN mkdir -p /opt/bump/server
 
-# Preinstall deps in an earlier layer so we don't reinstall every time any file
+# Preinstall gems in an earlier layer so we don't reinstall every time any file
 # changes.
-COPY ./requirements.txt /opt/bump/server
+COPY ./Gemfile /opt/bump/server/
+COPY ./Gemfile.lock /opt/bump/server/
 WORKDIR /opt/bump/server
-RUN pip3 install -r requirements.txt
+RUN bundle install
 
 # *NOW* we copy the codebase in
 COPY . /opt/bump/server
@@ -18,5 +16,6 @@ COPY . /opt/bump/server
 ENV DATABASE_URL=postgresql://postgres:mysecretpassword@postgres/
 # ENV REDIS_URL=redis://redis/1
 
-CMD ["make", "run"]
+ENTRYPOINT ["bundle", "exec"]
+CMD ["puma", "--port=80"]
 EXPOSE 80
