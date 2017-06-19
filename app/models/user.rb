@@ -20,6 +20,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  has_many :posts, dependent: :destroy
+
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false }, if: :email_changed?
   validates :name_first, :name_last, :password_digest, presence: true

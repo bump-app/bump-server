@@ -20,5 +20,8 @@ class Channel < ApplicationRecord
   include Sluggable
 
   friendly_id :name, use: %i[slugged finders history]
+
+  has_many :posts, dependent: :destroy
+
   validates :name, :description, presence: true
 end
