@@ -4,4 +4,5 @@ class ChannelResource < ApplicationResource
   attributes :name, :description
 
   has_many :posts
+  has_many :subscribers
 end
