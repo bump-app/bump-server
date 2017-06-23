@@ -21,3 +21,6 @@ script:
   # - redis-server
 addons:
   postgresql: 9.4
+
+notifications:
+  slack: breddit:45nSyTI8gF8rh8HqNTQgTPeP
