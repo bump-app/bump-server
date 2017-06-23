@@ -13,7 +13,7 @@
 #  index_user_roles_on_user_id_and_role_id  (user_id,role_id)
 #
 
-class UserRole < ApplicationRecord
-  belongs_to :user, required: true
-  belongs_to :role, required: true
+require 'rails_helper'
+
+RSpec.describe UserRolesController do
 end
