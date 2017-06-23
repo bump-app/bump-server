@@ -23,6 +23,8 @@ class Post < ApplicationRecord
   belongs_to :user, required: true
   belongs_to :channel, required: true
 
+  has_many :comments, dependent: :destroy
+
   validates :link, :link_formatted, presence: true,
                                     unless: ->(post) { post.text.present? }
   validates :text, presence: true, unless: ->(post) { post.link.present? },

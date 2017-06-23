@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     jsonapi_resources :user_roles
     jsonapi_resources :channels
     jsonapi_resources :posts
+    jsonapi_resources :comments
   end
 end
 
@@ -97,4 +98,18 @@ end
 #                               PATCH     /api/posts/:id(.:format)                                   posts#update
 #                               PUT       /api/posts/:id(.:format)                                   posts#update
 #                               DELETE    /api/posts/:id(.:format)                                   posts#destroy
+#    comment_relationships_user GET       /api/comments/:comment_id/relationships/user(.:format)     comments#show_relationship {:relationship=>"user"}
+#                               PUT|PATCH /api/comments/:comment_id/relationships/user(.:format)     comments#update_relationship {:relationship=>"user"}
+#                               DELETE    /api/comments/:comment_id/relationships/user(.:format)     comments#destroy_relationship {:relationship=>"user"}
+#                  comment_user GET       /api/comments/:comment_id/user(.:format)                   users#get_related_resource {:relationship=>"user", :source=>"comments"}
+#    comment_relationships_post GET       /api/comments/:comment_id/relationships/post(.:format)     comments#show_relationship {:relationship=>"post"}
+#                               PUT|PATCH /api/comments/:comment_id/relationships/post(.:format)     comments#update_relationship {:relationship=>"post"}
+#                               DELETE    /api/comments/:comment_id/relationships/post(.:format)     comments#destroy_relationship {:relationship=>"post"}
+#                  comment_post GET       /api/comments/:comment_id/post(.:format)                   posts#get_related_resource {:relationship=>"post", :source=>"comments"}
+#                      comments GET       /api/comments(.:format)                                    comments#index
+#                               POST      /api/comments(.:format)                                    comments#create
+#                       comment GET       /api/comments/:id(.:format)                                comments#show
+#                               PATCH     /api/comments/:id(.:format)                                comments#update
+#                               PUT       /api/comments/:id(.:format)                                comments#update
+#                               DELETE    /api/comments/:id(.:format)                                comments#destroy
 #
