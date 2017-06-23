@@ -3,7 +3,6 @@ class ApplicationController < JSONAPI::ResourceController
   include Pundit::ResourceController
 
   before_action :validate_token!
-  # before_action :doorkeeper_authorize!
   skip_after_action :enforce_policy_use
   force_ssl if Rails.env.production?
 
