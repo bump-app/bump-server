@@ -1,4 +1,4 @@
-class PostResource < BaseResource
+class PostResource < ApplicationResource
   attributes :link, :link_formatted, :text
 
   has_one :user

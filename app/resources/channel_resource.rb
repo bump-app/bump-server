@@ -1,4 +1,4 @@
-class ChannelResource < BaseResource
+class ChannelResource < ApplicationResource
   include SluggableResource
 
   attributes :name, :description

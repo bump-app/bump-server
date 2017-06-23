@@ -18,9 +18,11 @@
 # rubocop:enable Metrics/LineLength
 
 class User < ApplicationRecord
+  rolify
   has_secure_password
 
   has_many :posts, dependent: :destroy
+  has_many :user_roles, dependent: :destroy
 
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false }, if: :email_changed?
