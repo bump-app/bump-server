@@ -18,5 +18,5 @@
 
 require 'rails_helper'
 
-RSpec.describe ChannelsController, type: :controller do
+RSpec.describe ChannelsController do
 end
