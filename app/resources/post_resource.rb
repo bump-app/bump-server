@@ -4,5 +4,7 @@ class PostResource < ApplicationResource
   has_one :user
   has_one :channel
 
+  has_many :comments
+
   filters :user_id, :channel_id
 end
