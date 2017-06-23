@@ -22,6 +22,7 @@ class Channel < ApplicationRecord
   friendly_id :name, use: %i[slugged finders history]
 
   has_many :posts, dependent: :destroy
+  has_many :subscribers, class_name: 'Subscription'
 
   validates :name, :description, presence: true
 end

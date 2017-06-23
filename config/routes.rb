@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     jsonapi_resources :users
     jsonapi_resources :roles
     jsonapi_resources :user_roles
+    jsonapi_resources :friendships
     jsonapi_resources :channels
     jsonapi_resources :subscriptions
     jsonapi_resources :posts
@@ -44,6 +45,11 @@ end
 #                                    PUT|PATCH /api/users/:user_id/relationships/user-roles(.:format)              users#update_relationship {:relationship=>"user_roles"}
 #                                    DELETE    /api/users/:user_id/relationships/user-roles(.:format)              users#destroy_relationship {:relationship=>"user_roles"}
 #                    user_user_roles GET       /api/users/:user_id/user-roles(.:format)                            user_roles#get_related_resources {:relationship=>"user_roles", :source=>"users"}
+#     user_relationships_friendships GET       /api/users/:user_id/relationships/friendships(.:format)             users#show_relationship {:relationship=>"friendships"}
+#                                    POST      /api/users/:user_id/relationships/friendships(.:format)             users#create_relationship {:relationship=>"friendships"}
+#                                    PUT|PATCH /api/users/:user_id/relationships/friendships(.:format)             users#update_relationship {:relationship=>"friendships"}
+#                                    DELETE    /api/users/:user_id/relationships/friendships(.:format)             users#destroy_relationship {:relationship=>"friendships"}
+#                   user_friendships GET       /api/users/:user_id/friendships(.:format)                           friendships#get_related_resources {:relationship=>"friendships", :source=>"users"}
 #                              users GET       /api/users(.:format)                                                users#index
 #                                    POST      /api/users(.:format)                                                users#create
 #                               user GET       /api/users/:id(.:format)                                            users#show
@@ -79,11 +85,30 @@ end
 #                                    PATCH     /api/user-roles/:id(.:format)                                       user_roles#update
 #                                    PUT       /api/user-roles/:id(.:format)                                       user_roles#update
 #                                    DELETE    /api/user-roles/:id(.:format)                                       user_roles#destroy
+#      friendship_relationships_user GET       /api/friendships/:friendship_id/relationships/user(.:format)        friendships#show_relationship {:relationship=>"user"}
+#                                    PUT|PATCH /api/friendships/:friendship_id/relationships/user(.:format)        friendships#update_relationship {:relationship=>"user"}
+#                                    DELETE    /api/friendships/:friendship_id/relationships/user(.:format)        friendships#destroy_relationship {:relationship=>"user"}
+#                    friendship_user GET       /api/friendships/:friendship_id/user(.:format)                      users#get_related_resource {:relationship=>"user", :source=>"friendships"}
+#    friendship_relationships_friend GET       /api/friendships/:friendship_id/relationships/friend(.:format)      friendships#show_relationship {:relationship=>"friend"}
+#                                    PUT|PATCH /api/friendships/:friendship_id/relationships/friend(.:format)      friendships#update_relationship {:relationship=>"friend"}
+#                                    DELETE    /api/friendships/:friendship_id/relationships/friend(.:format)      friendships#destroy_relationship {:relationship=>"friend"}
+#                  friendship_friend GET       /api/friendships/:friendship_id/friend(.:format)                    users#get_related_resource {:relationship=>"friend", :source=>"friendships"}
+#                        friendships GET       /api/friendships(.:format)                                          friendships#index
+#                                    POST      /api/friendships(.:format)                                          friendships#create
+#                         friendship GET       /api/friendships/:id(.:format)                                      friendships#show
+#                                    PATCH     /api/friendships/:id(.:format)                                      friendships#update
+#                                    PUT       /api/friendships/:id(.:format)                                      friendships#update
+#                                    DELETE    /api/friendships/:id(.:format)                                      friendships#destroy
 #        channel_relationships_posts GET       /api/channels/:channel_id/relationships/posts(.:format)             channels#show_relationship {:relationship=>"posts"}
 #                                    POST      /api/channels/:channel_id/relationships/posts(.:format)             channels#create_relationship {:relationship=>"posts"}
 #                                    PUT|PATCH /api/channels/:channel_id/relationships/posts(.:format)             channels#update_relationship {:relationship=>"posts"}
 #                                    DELETE    /api/channels/:channel_id/relationships/posts(.:format)             channels#destroy_relationship {:relationship=>"posts"}
 #                      channel_posts GET       /api/channels/:channel_id/posts(.:format)                           posts#get_related_resources {:relationship=>"posts", :source=>"channels"}
+#  channel_relationships_subscribers GET       /api/channels/:channel_id/relationships/subscribers(.:format)       channels#show_relationship {:relationship=>"subscribers"}
+#                                    POST      /api/channels/:channel_id/relationships/subscribers(.:format)       channels#create_relationship {:relationship=>"subscribers"}
+#                                    PUT|PATCH /api/channels/:channel_id/relationships/subscribers(.:format)       channels#update_relationship {:relationship=>"subscribers"}
+#                                    DELETE    /api/channels/:channel_id/relationships/subscribers(.:format)       channels#destroy_relationship {:relationship=>"subscribers"}
+#                channel_subscribers GET       /api/channels/:channel_id/subscribers(.:format)                     subscriptions#get_related_resources {:relationship=>"subscribers", :source=>"channels"}
 #                           channels GET       /api/channels(.:format)                                             channels#index
 #                                    POST      /api/channels(.:format)                                             channels#create
 #                            channel GET       /api/channels/:id(.:format)                                         channels#show
