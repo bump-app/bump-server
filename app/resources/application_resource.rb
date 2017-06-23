@@ -1,5 +1,7 @@
-class BaseResource < JSONAPI::Resource
+class ApplicationResource < JSONAPI::Resource
   abstract
+  include Pundit::Resource
+  include AuthenticatedResource
 
   def self.apply_sort(records, order_options, context = {})
     return records unless order_options.any?
