@@ -68,7 +68,6 @@ class ApplicationPolicy
       scope
     end
 
-
     def admin?
       admin_scope = scope.respond_to?(:model) ? scope.model : scope
       user&.has_role?(:admin, admin_scope)
