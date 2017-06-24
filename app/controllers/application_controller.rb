@@ -54,6 +54,17 @@ class ApplicationController < JSONAPI::ResourceController
     end
   end
 
+  def serialize_error(status, message)
+    {
+      errors: [
+        {
+          status: status,
+          detail: message
+        }
+      ]
+    }
+  end
+
   def render_jsonapi(data, opts = {})
     render opts.merge(json: data, content_type: JSONAPI::MEDIA_TYPE)
   end

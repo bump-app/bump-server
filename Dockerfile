@@ -2,7 +2,7 @@ FROM ruby:2.3.1
 MAINTAINER bump-app <https://github.com/bump-app>
 
 RUN apt-get update -qq \
-    && apt-get install -y build-essential libpq-dev postgresql-client \
+    && apt-get install -y build-essential libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /opt/bump/server
