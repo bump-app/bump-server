@@ -1,12 +1,11 @@
-# rubocop:disable Metrics/LineLength
 # == Schema Information
 #
 # Table name: users
 #
 #  id              :integer          not null, primary key
 #  email           :string           not null, indexed
-#  name_first      :string           not null
-#  name_last       :string           not null
+#  first_name      :string           not null
+#  last_name       :string           not null
 #  password_digest :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -15,7 +14,6 @@
 #
 #  index_users_on_email  (email)
 #
-# rubocop:enable Metrics/LineLength
 
 class User < ApplicationRecord
   rolify
@@ -28,5 +26,5 @@ class User < ApplicationRecord
 
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false }, if: :email_changed?
-  validates :name_first, :name_last, :password_digest, presence: true
+  validates :first_name, :last_name, :password_digest, presence: true
 end

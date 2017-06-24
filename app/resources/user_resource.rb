@@ -1,5 +1,5 @@
 class UserResource < ApplicationResource
-  attributes :email, :password, :name_first, :name_last
+  attributes :email, :password, :first_name, :last_name
 
   has_many :posts
   has_many :comments
