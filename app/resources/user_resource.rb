@@ -7,4 +7,8 @@ class UserResource < ApplicationResource
   has_many :friendships
 
   filter :email
+  filter :self, apply: ->(records, _v, options) {
+    current_user = options[:context][:current_user]&.resource_owner
+    records.where(id: current_user&.id) || User.none
+  }
 end

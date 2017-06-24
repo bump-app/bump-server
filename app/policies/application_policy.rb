@@ -48,6 +48,7 @@ class ApplicationPolicy
     return false unless user && record.respond_to?(:user)
     return false unless record.user_id == user.id
     return false if record.user_id_was && record.user_id_was != user.id
+    true
   end
 
   def policy_for(model)
@@ -66,6 +67,7 @@ class ApplicationPolicy
     def resolve
       scope
     end
+
 
     def admin?
       admin_scope = scope.respond_to?(:model) ? scope.model : scope

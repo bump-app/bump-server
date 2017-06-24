@@ -8,6 +8,7 @@ class FriendshipPolicy < ApplicationPolicy
     return false unless user
     return false unless record.friend_id == user.id
     return false if record.friend_id_was && record.friend_id_was != user.id
+    true
   end
   alias_method :destroy?, :update?
 end
