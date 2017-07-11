@@ -1,5 +1,5 @@
 class CommentResource < ApplicationResource
-  attribute :text
+  attributes :text, :created_at
 
   has_one :user
   has_one :post
