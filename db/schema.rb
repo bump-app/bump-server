@@ -47,11 +47,13 @@ ActiveRecord::Schema.define(version: 20170624001330) do
   end
 
   create_table "friendships", force: :cascade do |t|
-    t.integer  "friend_id",                  null: false
-    t.integer  "user_id",                    null: false
+    t.integer  "user_id"
+    t.integer  "friend_id"
     t.boolean  "confirmed",  default: false, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_friendships_on_user_id", using: :btree
   end
 
@@ -150,6 +152,8 @@ ActiveRecord::Schema.define(version: 20170624001330) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
 end

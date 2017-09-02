@@ -1,14 +1,23 @@
 class UserResource < ApplicationResource
   attributes :email, :password, :first_name, :last_name
+  attribute :all_friends
+  def all_friends
+    User.all_friends(context[:current_user]&.resource_owner)
+    #User.all_friends(user)
+  end
 
   has_many :posts
   has_many :comments
   has_many :user_roles
   has_many :friendships
   has_many :friends
+
   has_many :confirmed_friends
+
   has_many :received_friendships
   has_many :sent_friendships
+  has_many :inverse_friendships
+  has_many :inverse_friends
 
   filter :email
   filter :self, apply: ->(records, _v, options) {
@@ -18,5 +27,10 @@ class UserResource < ApplicationResource
   filter :available_users_to_friend, apply: ->(records, _v, options) {
     current_user = options[:context][:current_user]&.resource_owner
     User.available_users_to_friend(current_user)
+  }
+
+  filter :all_friends, apply: ->(records, _v, options) {
+    current_user = options[:context][:current_user]&.resource_owner
+    User.all_friends(current_user)
   }
 end

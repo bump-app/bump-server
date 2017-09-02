@@ -70,6 +70,16 @@ end
 #                                         PUT|PATCH /api/users/:user_id/relationships/sent-friendships(.:format)        users#update_relationship {:relationship=>"sent_friendships"}
 #                                         DELETE    /api/users/:user_id/relationships/sent-friendships(.:format)        users#destroy_relationship {:relationship=>"sent_friendships"}
 #                   user_sent_friendships GET       /api/users/:user_id/sent-friendships(.:format)                      friendships#get_related_resources {:relationship=>"sent_friendships", :source=>"users"}
+#     user_relationships_received_friends GET       /api/users/:user_id/relationships/received-friends(.:format)        users#show_relationship {:relationship=>"received_friends"}
+#                                         POST      /api/users/:user_id/relationships/received-friends(.:format)        users#create_relationship {:relationship=>"received_friends"}
+#                                         PUT|PATCH /api/users/:user_id/relationships/received-friends(.:format)        users#update_relationship {:relationship=>"received_friends"}
+#                                         DELETE    /api/users/:user_id/relationships/received-friends(.:format)        users#destroy_relationship {:relationship=>"received_friends"}
+#                   user_received_friends GET       /api/users/:user_id/received-friends(.:format)                      users#get_related_resources {:relationship=>"received_friends", :source=>"users"}
+#         user_relationships_sent_friends GET       /api/users/:user_id/relationships/sent-friends(.:format)            users#show_relationship {:relationship=>"sent_friends"}
+#                                         POST      /api/users/:user_id/relationships/sent-friends(.:format)            users#create_relationship {:relationship=>"sent_friends"}
+#                                         PUT|PATCH /api/users/:user_id/relationships/sent-friends(.:format)            users#update_relationship {:relationship=>"sent_friends"}
+#                                         DELETE    /api/users/:user_id/relationships/sent-friends(.:format)            users#destroy_relationship {:relationship=>"sent_friends"}
+#                       user_sent_friends GET       /api/users/:user_id/sent-friends(.:format)                          users#get_related_resources {:relationship=>"sent_friends", :source=>"users"}
 #                                   users GET       /api/users(.:format)                                                users#index
 #                                         POST      /api/users(.:format)                                                users#create
 #                                    user GET       /api/users/:id(.:format)                                            users#show
