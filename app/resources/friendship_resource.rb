@@ -4,6 +4,8 @@ class FriendshipResource < ApplicationResource
   has_one :user
   has_one :friend
 
+  has_one :friendship_setting
+
   filters :user_id, :friend_id
 
   # probably should pass user_id in instead of using options
