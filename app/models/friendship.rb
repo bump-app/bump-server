@@ -21,26 +21,37 @@ class Friendship < ApplicationRecord
 
   belongs_to :friendship_setting, required: false
 
-  after_create do
-    # need to create the underlying friendship_setting model that describes the
-    # friendship
-    setting = FriendshipSetting.create
-    self.friendship_setting = setting
-    puts "ASDASDASDASDAAAAAAAAAAAAAAAAAAA"
-    puts setting.id
-    self.save
-    puts setting.id
+  #before_create do
+    ## need to create the underlying friendship_setting model that describes the
+    ## friendship
+    #setting = FriendshipSetting.create
+    #self.friendship_setting = setting
+    #puts "ASDASDASDASDAAAAAAAAAAAAAAAAAAA"
+    #puts setting.id
+    ##self.save
+    #puts setting.id
+  #end
 
+
+  after_create do
     unless has_inverse?
-      create_inverse(setting)
+      # need to create the underlying friendship_setting model that describes the
+      # friendship.
+      # we only create a new friendship_setting for a new pair of records.
+        
+      setting = FriendshipSetting.create
+      self.friendship_setting = setting
+      self.save
+
+      create_inverse(self.friendship_setting)
     end
   end
   after_destroy :destroy_inverses, if: :has_inverse?
 
   def create_inverse(setting)
-    puts "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-    puts setting.id
-    self.class.create(inverse_friendship_options.merge(friendship_setting: setting))
+    inverse = self.class.create(inverse_friendship_options)
+    inverse.friendship_setting = setting
+    inverse.save
   end
   
   def destroy_inverses
