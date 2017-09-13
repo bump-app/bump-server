@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/LineLength
 # == Schema Information
 #
 # Table name: friendship_settings
@@ -8,7 +7,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-# rubocop:enable Metrics/LineLength
 
 require 'rails_helper'
 
