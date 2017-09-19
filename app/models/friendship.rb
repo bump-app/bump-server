@@ -80,7 +80,8 @@ class Friendship < ApplicationRecord
   #validates :confirmed, :inclusion => { :in => [true, false] }
   validates_uniqueness_of :user_id, :scope => :friend_id
 
-  scope :by_status, ->(confirmed) { where(confirmed: confirmed) }
+  #scope :by_status, ->(confirmed) { where(confirmed: confirmed) }
+  scope :by_status, ->(confirmed) { FriendshipSetting.by_status(confirmed) }
   scope :sent, ->(user_id) { where(user_id: user_id).where(confirmed: false) }
   scope :received, ->(user_id) { where(friend_id: user_id).where(confirmed: false) }
   scope :friends, ->(user_id) { where(user_id: user_id).or(where(friend_id: user_id)).where(confirmed: true) }

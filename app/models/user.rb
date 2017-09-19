@@ -31,8 +31,7 @@ class User < ApplicationRecord
 
   # not in use but works
   has_many :confirmed_friends, -> { Friendship.by_status(true) },
-    :through => :friendships, 
-    :source => :friend
+    :through => :friendships
 
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false }, if: :email_changed?

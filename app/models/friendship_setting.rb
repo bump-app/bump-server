@@ -11,5 +11,6 @@
 class FriendshipSetting < ApplicationRecord
   has_many :friendships
   validates :confirmed, :inclusion => { :in => [true, false] }
-  
+
+  scope :by_status, ->(confirmed) { where(confirmed: confirmed) }
 end
